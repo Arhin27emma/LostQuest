@@ -314,6 +314,15 @@ class _LostPostState extends State<LostPost> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(167, 235, 233, 233),
+                            borderRadius: BorderRadius.all(Radius.circular(5))
+                          ),
+                          child: const Center(child: Icon(Icons.image_rounded, size: 100, color: Colors.grey,)),
+                        ),
                         GestureDetector(
                           onTap: () async {
                             selectedImage = await _databaseService.pickimage();
@@ -324,7 +333,7 @@ class _LostPostState extends State<LostPost> {
                           },
                           child: selectedImage != null ? 
                             Container(
-                              width: 100,
+                              width: 200,
                               height: 100,
                               decoration: const BoxDecoration(
                                 color: Color.fromARGB(167, 235, 233, 233),
@@ -334,35 +343,19 @@ class _LostPostState extends State<LostPost> {
                               child: Image.file(File(selectedImage!.path), width: double.infinity, height: double.infinity, fit: BoxFit.cover)
                           )
                           :Container(
-                            width: 100,
+                            width: 200,
                             height: 100,
                             decoration: const BoxDecoration(
                               color: Color.fromARGB(167, 235, 233, 233),
                               borderRadius: BorderRadius.all(Radius.circular(5))
                             ),
-                            child: const Center(child: Icon(Icons.add_circle_outlined, size: 40, color: Colors.red,)),
+                            child: const Center(child: Icon(Icons.upload_file_rounded, size: 40, color: Colors.red,)),
                           )
                         ),
-                        const SizedBox(width: 20,),
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(167, 235, 233, 233),
-                            borderRadius: BorderRadius.all(Radius.circular(5))
-                          ),
-                          child: const Center(child: Icon(Icons.add_circle_outlined, size: 40, color: Colors.red,)),
-                        ),
-                        const SizedBox(width: 20,),
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(167, 235, 233, 233),
-                            borderRadius: BorderRadius.all(Radius.circular(5))
-                          ),
-                          child: const Center(child: Icon(Icons.add_circle_outlined, size: 40, color: Colors.red,)),
-                        ),
+                        //const SizedBox(width: 20,),
+                        
+                        //const SizedBox(width: 20,),
+                        
                       ],
                     ),
                   ),
