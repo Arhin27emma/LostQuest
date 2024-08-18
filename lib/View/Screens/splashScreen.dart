@@ -51,7 +51,7 @@ class SplashScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
                 AnimatedTextKit(totalRepeatCount: 5, animatedTexts: [
-                  TypewriterAnimatedText("Lost And Found",
+                  TypewriterAnimatedText("LostQuest",
                       speed: Duration(milliseconds: 300),
                       textStyle: TextStyle(
                           fontSize: 35,
@@ -61,7 +61,7 @@ class SplashScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 10),
                   child: const Text(
-                    "Enter personal details to your Lost And Found account to get started",
+                    "Enter personal details to your LostQuest account to get started",
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.red,

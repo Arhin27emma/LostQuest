@@ -41,7 +41,7 @@ class AccountDetailsAuth {
   Future<String> getName(String name) async{
     final FirebaseFirestore db = FirebaseFirestore.instance;
     try {
-      DocumentSnapshot doc = await db.collection("ProfileDetails").doc(name).get();
+      DocumentSnapshot doc = await db.collection("ProfileDetails").doc(_auth.currentUser!.email).get();
       return doc['name'];
     } catch (e) {
       throw Exception('Error fetching profile name: $e');

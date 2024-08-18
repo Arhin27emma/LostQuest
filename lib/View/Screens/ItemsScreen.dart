@@ -26,7 +26,7 @@ class _MyItemsState extends State<MyItems> with SingleTickerProviderStateMixin {
 
   late final TabController _tabController;
 
-  var email = _auth.currentUser!.email;
+  var email = _auth.currentUser?.email ?? '';
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
 
@@ -131,10 +131,13 @@ class ItemListBuilder extends StatelessWidget {
             itemBuilder: (context, index) {
               var item = items[index];
               return ItemBuilder( 
+                id: item.id,
                 name: item.name,
                 location: item.location,
                 date: item.date,
                 image: item.imageUrl,
+                category: item.category,
+                description: item.description,
               );
               
             },
@@ -145,28 +148,33 @@ class ItemListBuilder extends StatelessWidget {
 class ItemBuilder extends StatelessWidget {
   const ItemBuilder({
     super.key,
+    required this.id,
     required this.name,
     required this.location,
     required this.date,
     required this.image,
+    required this.category,
+    required this.description,
   });
-
+  final String id;
   final String name;
   final String location;
   final String date;
   final String image;
+  final String category;
+  final String description;
 
 
 
   void showDeleteConfirmationDialog(BuildContext context) {
     final CollectionReference _itemsCollection = FirebaseFirestore.instance.collection("AddPostDB");
-    Future<void> deleteItem(ItemModel item) async {
-    try {
-      await _itemsCollection.doc(item.id).delete();
-    } catch (e) {
-      throw Exception("Error deleting item: $e");
+    Future<void> deleteItem() async {
+      try {
+        await _itemsCollection.doc(id).delete();
+      } catch (e) {
+        throw Exception("Error deleting item: $e");
+      }
     }
-  }
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -184,8 +192,7 @@ class ItemBuilder extends StatelessWidget {
               child: const Text("Delete",  style: TextStyle(color: Colors.red)),
               onPressed: () async {
                 try {
-                  await deleteItem(ItemModel(
-                    id: '', email: '', type: '', category: '', name: '', location: '', date: '', description: '', imageUrl: ''));
+                  await deleteItem();
                  
                   
                 } catch (e) {
@@ -258,9 +265,10 @@ class ItemBuilder extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () =>
-                          Navigator.pushNamed(
-                            context, EditPost.routeName,
-                          ),
+                       Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EditPost(name: name, id: id, location: location, dateTime: date, image: image, category: category, description: description,)),
+                      ),
                       icon: const Icon(
                         Icons.edit_document,
                         size: 22,

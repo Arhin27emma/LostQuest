@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:lost_and_found/View/Screens/ItemsScreen.dart';
 import 'package:lost_and_found/View/Screens/accountDetails.dart';
-import 'package:lost_and_found/View/Screens/editPost.dart';
+//import 'package:lost_and_found/View/Screens/editPost.dart';
 import 'package:lost_and_found/View/Screens/foundPost.dart';
 import 'package:lost_and_found/View/Screens/addPost.dart';
 import 'package:lost_and_found/View/Screens/lostPost.dart';
@@ -33,7 +33,7 @@ final Map<String, WidgetBuilder> routes ={
   AccountDetails.routeName:(context) => const AccountDetails(),
   PasswordSet.routeName:(context) => const PasswordSet(),
   MyItems.routeName:(context) => const MyItems(),
-  EditPost.routeName:(context) => const EditPost(),
+  //EditPost.routeName:(context) => const EditPost(),
   //Settings.routeName:(context) => const Settings(),
   NotificationScreen.routeName:(contex) => const NotificationScreen()
 };

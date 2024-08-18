@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lost_and_found/Model/Authentication/accountDetailsAuth.dart';
@@ -14,7 +15,9 @@ import 'package:lost_and_found/View/Screens/setPassword.dart';
 import 'package:lost_and_found/View/Screens/splashScreen.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({super.key});
+  const Settings({super.key,});
+
+
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -24,25 +27,28 @@ class _SettingsState extends State<Settings> {
   final AccountDetailsAuth _accountAuth = AccountDetailsAuth();
   XFile? _selectedImage;
 
-  String displayName = "Your Name";
+  String displayName = 'Your name';
 
   @override
   void initState() {
     super.initState();
-    fetchName(displayName); // Replace 'yourUserId' with the actual user ID
+    fetchName();
   }
 
-  Future<void> fetchName(String userId) async {
+  Future<void> fetchName() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    //String userId = "";
     final FirebaseFirestore db = FirebaseFirestore.instance;
     try {
-      DocumentSnapshot doc = await db.collection("ProfileDetails").doc(userId).get();
+      DocumentSnapshot doc = await db.collection("ProfileDetails").doc(_auth.currentUser!.email).get();
       if (doc.exists && doc.data() != null && doc['name'] != null) {
         setState(() {
-          displayName = doc['name'];
+           displayName = doc['name'];
         });
       }
+      print(displayName);
     } catch (e) {
-      // Handle error (optional)
+      throw Exception("Error getting document: $e");
     }
   }
 
@@ -57,7 +63,7 @@ class _SettingsState extends State<Settings> {
         ),
         title: const Text(
           "PROFILE SETTINGS",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.indigo),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.red),
         ),
         titleSpacing: 45,
       ),
@@ -127,7 +133,7 @@ class _SettingsState extends State<Settings> {
               ),
               const SizedBox(height: 10),
               Text(
-                displayName,
+               displayName, 
                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const Text(

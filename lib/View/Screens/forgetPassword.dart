@@ -80,7 +80,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text("LOSTQUEST", style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text("LostQuest", style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
                       ],
                     ),
                   ),
@@ -152,7 +152,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                             const Text("Don't have an account? ", style: TextStyle(fontSize: 15,)),
                                             GestureDetector(
                                               onTap: () => Navigator.pushNamed(context, SignUp.routeName),
-                                              child: const Text("Sign up", style: TextStyle(fontSize: 15, color: Colors.indigo),)),
+                                              child: const Text("Sign up", style: TextStyle(fontSize: 15, color: Colors.red),)),
                                           ],
                                         ),
                                       ]

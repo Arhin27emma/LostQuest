@@ -225,9 +225,7 @@ class _SignUpState extends State<SignUp> {
                                                 //const SizedBox(width: 20,),
                                                 const Text("I agree to the processing of ", style: TextStyle(fontSize: 12,)),
                                                 //const SizedBox(width: 30,),
-                                                GestureDetector(
-                                                  onTap: () => Navigator.pushNamed(context, PageScreen.routeName),
-                                                  child: const Text("Personal data ", style: TextStyle(fontSize: 15, color: Colors.red),)),
+                                               const Text("Personal data ", style: TextStyle(fontSize: 15, color: Colors.red),),
                                               ],
                                             ),
                                             const SizedBox(height: 20,),

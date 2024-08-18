@@ -96,7 +96,7 @@ class _SignInState extends State<SignIn> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text("Lost And Found", style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
+                        Text("LostQuest", style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),),
                       ],
                     ),
                   ),
