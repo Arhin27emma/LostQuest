@@ -74,7 +74,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       children: [
                         CircleAvatar(
                           radius: 30,
-                          backgroundImage: AssetImage("assets/images/onboardingImage1.jpg",),
+                          backgroundImage: AssetImage("assets/images/onboardingImage2.jpg",),
                           
                         ),
                         SizedBox(

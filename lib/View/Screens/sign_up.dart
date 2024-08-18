@@ -104,7 +104,7 @@ class _SignUpState extends State<SignUp> {
                       children: [
                         CircleAvatar(
                           radius: 30,
-                          backgroundImage: AssetImage("assets/images/onboardingImage1.jpg",),
+                          backgroundImage: AssetImage("assets/images/onboardingImage2.jpg",),
                           
                         ),
                         SizedBox(
