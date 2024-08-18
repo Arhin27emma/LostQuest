@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lost_and_found/Model/Authentication/ChatService.dart';
@@ -23,7 +25,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat with ${widget.receiverEmail}'),
+        title: const Text('LOSTQUEST CHAT', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 20),),
       ),
       body: Column(
         children: [
@@ -32,7 +34,7 @@ class _ChatScreenState extends State<ChatScreen> {
               stream: _chatService.getMessages(widget.chatId),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
                 var messages = snapshot.data!.docs;
                 return ListView.builder(
@@ -42,7 +44,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     return ListTile(
                       title: Text(message['message']),
                       subtitle: Text(message['senderEmail']),
-                      trailing: Text(message['timestamp'] != null ? message['timestamp'].toDate().toString() : ''),
+                      subtitleTextStyle: TextStyle(color: Colors.red),
+                      trailing: Text(message['timestamp'] != null ? message['timestamp'].toDate().toString() : '', style: TextStyle(color: Colors.green),),
+                      
                     );
                   },
                 );
@@ -56,11 +60,11 @@ class _ChatScreenState extends State<ChatScreen> {
                 Expanded(
                   child: TextField(
                     controller: _messageController,
-                    decoration: InputDecoration(hintText: 'Enter your message'),
+                    decoration: const InputDecoration(hintText: 'Enter your message'),
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   onPressed: () {
                     if (_messageController.text.isNotEmpty) {
                       _chatService.sendMessage(
