@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:lost_and_found/Model/Authentication/itemModel.dart';
-//import 'package:lost_and_found/View/Screens/dataDetials.dart';
+import 'package:lost_and_found/Model/Authentication/ItemModel.dart';
+import 'package:lost_and_found/View/Screens/dataDetials.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -17,7 +17,10 @@ class _SearchScreenState extends State<SearchScreen> {
   
   List<ItemModel> searchResults = [];
 
+  bool isLoading = true;
+
   void searchItems(String query) async {
+    
     if (query.isEmpty) {
       setState(() {
         searchResults.clear();
@@ -34,6 +37,8 @@ class _SearchScreenState extends State<SearchScreen> {
       searchResults = filteredResults;
     });
   }
+
+
 
   TextEditingController searchController = TextEditingController();
 
@@ -104,7 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ItemModel item = searchResults[index];
         return GestureDetector(
           onTap: () {
-            //Navigator.push(context, MaterialPageRoute(builder: (context) => Datadetail(item: item)));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Datadetail(item: item)));
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 5.0, left: 8, right: 8),
